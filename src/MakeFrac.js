@@ -28,8 +28,15 @@ function initSystem(array)
 function drawNextPoint()
 {
 	drawCoordinates(MP)
-	var randIdx = Math.floor(Math.random() * Triangle.length);
-	MP = findMidPoint(Triangle[randIdx], MP)
+	var randIdx = Math.floor(Math.random() * Figure.length);
+	
+	while(PrevVertex == randIdx)
+	{
+		randIdx = Math.floor(Math.random() * Figure.length);
+	}
+	
+	PrevVertex = randIdx
+	MP = findMidPoint(Figure[randIdx], MP)
 
 	PointCount = PointCount + 1
 
@@ -53,7 +60,10 @@ ctx = canvas.getContext('2d')
 
 var MP = [Math.floor((canvas.width-50)/2), Math.floor((canvas.height-50)/2)]
 var Triangle = [[Math.floor((canvas.width-50)/2), 25], [25, canvas.height-25], [canvas.width-25, canvas.height-25]]
+var Square = [[25, 25], [canvas.width-25, 25], [25, canvas.height-25], [canvas.width-25, canvas.height-25]]
 
+var PrevVertex = -1
+var Figure = Square
 
 DepthLevel = 20000
 PointCount = 0
@@ -61,4 +71,4 @@ PointCount = 0
 document.body.appendChild(canvas)
 ctx.clearRect(0, 0, 500, 500);
 
-initSystem(Triangle)
+initSystem(Figure)
