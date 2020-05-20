@@ -18,7 +18,7 @@ But if we do the same for a square, there is no pattern. We then restrict the ra
 We can keep picking different polygons and making new fractals out of apparent randomness.
 I wanted to see for myself, hence this repository.
 
-##Other Fractals
+### Other Fractals
 
 Rule : Opposite Vertices cannot be Chosen
 
