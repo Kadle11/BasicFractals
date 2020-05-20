@@ -11,8 +11,8 @@ function drawCoordinates(P, pointSize=1)
 function findMidPoint(P1, P2)
 {
 	var MP = [0,0]
-	MP[0] = Math.ceil((P1[0]+P2[0])/2);
-	MP[1] = Math.ceil((P1[1]+P2[1])/2);
+	MP[0] = Math.floor((P1[0]+P2[0])/2);
+	MP[1] = Math.floor((P1[1]+P2[1])/2);
 	return MP; 
 }
 
@@ -20,14 +20,13 @@ function initSystem(array)
 {
 	for (var i = array.length - 1; i >= 0; i--) {
 
-		drawCoordinates(array[i], array[i])
+		drawCoordinates(array[i])
 	}
 	makeFractal()
 }
 
 function drawNextPoint()
 {
-	drawCoordinates(MP)
 	var randIdx = Math.floor(Math.random() * Figure.length);
 	
 	while(PrevVertex == randIdx)
@@ -37,7 +36,8 @@ function drawNextPoint()
 	
 	PrevVertex = randIdx
 	MP = findMidPoint(Figure[randIdx], MP)
-
+	drawCoordinates(MP)
+	
 	PointCount = PointCount + 1
 
 	if(PointCount == DepthLevel)
@@ -65,7 +65,7 @@ var Square = [[25, 25], [canvas.width-25, 25], [25, canvas.height-25], [canvas.w
 var PrevVertex = -1
 var Figure = Square
 
-DepthLevel = 20000
+DepthLevel = 50000
 PointCount = 0
 
 document.body.appendChild(canvas)
